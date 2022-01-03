@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
+apply plugin: 'kotlin-android'
 
 android {
     compileSdk 31
@@ -16,6 +17,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -52,4 +56,6 @@ dependencies {
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation("androidx.activity:activity-ktx:$activity_version")
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.10"
 }
