@@ -3,18 +3,18 @@ package com.task.searchrepo.model
 import com.squareup.moshi.Json
 
 data class License(
-    @Json(name = "key")
+    @field:Json(name = "key")
     var key: String,
 
-    @Json(name = "name")
+    @field:Json(name = "name")
     var name: String,
 
-    @Json(name = "spdx_id")
+    @field:Json(name = "spdx_id")
     var spdxId: String,
 
-    @Json(name = "url")
+    @field:Json(name = "url")
     var url: String,
 
-    @Json(name = "node_id")
+    @field:Json(name = "node_id")
     var nodeId: String
 )

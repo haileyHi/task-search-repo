@@ -3,237 +3,237 @@ package com.task.searchrepo.model
 import com.squareup.moshi.Json
 
 data class Repo(
-    @Json(name = "id")
+    @field:Json(name = "id")
     var id: Int,
 
-    @Json(name = "node_id")
+    @field:Json(name = "node_id")
     var nodeId: String,
 
-    @Json(name = "name")
+    @field:Json(name = "name")
     var name: String,
 
-    @Json(name = "full_name")
+    @field:Json(name = "full_name")
     var fullName: String,
 
-    @Json(name = "private")
+    @field:Json(name = "private")
     var _private: Boolean,
 
-    @Json(name = "owner")
+    @field:Json(name = "owner")
     var owner: Owner,
 
-    @Json(name = "html_url")
+    @field:Json(name = "html_url")
     var htmlUrl: String,
 
-    @Json(name = "description")
+    @field:Json(name = "description")
     var description: String?,
 
-    @Json(name = "fork")
+    @field:Json(name = "fork")
     var fork: Boolean,
 
-    @Json(name = "url")
+    @field:Json(name = "url")
     var url: String,
 
-    @Json(name = "forks_url")
+    @field:Json(name = "forks_url")
     var forksUrl: String,
 
-    @Json(name = "keys_url")
+    @field:Json(name = "keys_url")
     var keysUrl: String,
 
-    @Json(name = "collaborators_url")
+    @field:Json(name = "collaborators_url")
     var collaboratorsUrl: String,
 
-    @Json(name = "teams_url")
+    @field:Json(name = "teams_url")
     var teamsUrl: String,
 
-    @Json(name = "hooks_url")
+    @field:Json(name = "hooks_url")
     var hooksUrl: String,
 
-    @Json(name = "issue_events_url")
+    @field:Json(name = "issue_events_url")
     var issueEventsUrl: String,
 
-    @Json(name = "events_url")
+    @field:Json(name = "events_url")
     var eventsUrl: String,
 
-    @Json(name = "assignees_url")
+    @field:Json(name = "assignees_url")
     var assigneesUrl: String,
 
-    @Json(name = "branches_url")
+    @field:Json(name = "branches_url")
     var branchesUrl: String,
 
-    @Json(name = "tags_url")
+    @field:Json(name = "tags_url")
     var tagsUrl: String,
 
-    @Json(name = "blobs_url")
+    @field:Json(name = "blobs_url")
     var blobsUrl: String,
 
-    @Json(name = "git_tags_url")
+    @field:Json(name = "git_tags_url")
     var gitTagsUrl: String,
 
-    @Json(name = "git_refs_url")
+    @field:Json(name = "git_refs_url")
     var gitRefsUrl: String,
 
-    @Json(name = "trees_url")
+    @field:Json(name = "trees_url")
     var treesUrl: String,
 
-    @Json(name = "statuses_url")
+    @field:Json(name = "statuses_url")
     var statusesUrl: String,
 
-    @Json(name = "languages_url")
+    @field:Json(name = "languages_url")
     var languagesUrl: String,
 
-    @Json(name = "stargazers_url")
+    @field:Json(name = "stargazers_url")
     var stargazersUrl: String,
 
-    @Json(name = "contributors_url")
+    @field:Json(name = "contributors_url")
     var contributorsUrl: String,
 
-    @Json(name = "subscribers_url")
+    @field:Json(name = "subscribers_url")
     var subscribersUrl: String,
 
-    @Json(name = "subscription_url")
+    @field:Json(name = "subscription_url")
     var subscriptionUrl: String,
 
-    @Json(name = "commits_url")
+    @field:Json(name = "commits_url")
     var commitsUrl: String,
 
-    @Json(name = "git_commits_url")
+    @field:Json(name = "git_commits_url")
     var gitCommitsUrl: String,
 
-    @Json(name = "comments_url")
+    @field:Json(name = "comments_url")
     var commentsUrl: String,
 
-    @Json(name = "issue_comment_url")
+    @field:Json(name = "issue_comment_url")
     var issueCommentUrl: String,
 
-    @Json(name = "contents_url")
+    @field:Json(name = "contents_url")
     var contentsUrl: String,
 
-    @Json(name = "compare_url")
+    @field:Json(name = "compare_url")
     var compareUrl: String,
 
-    @Json(name = "merges_url")
+    @field:Json(name = "merges_url")
     var mergesUrl: String,
 
-    @Json(name = "archive_url")
+    @field:Json(name = "archive_url")
     var archiveUrl: String,
 
-    @Json(name = "downloads_url")
+    @field:Json(name = "downloads_url")
     var downloadsUrl: String,
 
-    @Json(name = "issues_url")
+    @field:Json(name = "issues_url")
     var issuesUrl: String,
 
-    @Json(name = "pulls_url")
+    @field:Json(name = "pulls_url")
     var pullsUrl: String,
 
-    @Json(name = "milestones_url")
+    @field:Json(name = "milestones_url")
     var milestonesUrl: String,
 
-    @Json(name = "notifications_url")
+    @field:Json(name = "notifications_url")
     var notificationsUrl: String,
 
-    @Json(name = "labels_url")
+    @field:Json(name = "labels_url")
     var labelsUrl: String,
 
-    @Json(name = "releases_url")
+    @field:Json(name = "releases_url")
     var releasesUrl: String,
 
-    @Json(name = "deployments_url")
+    @field:Json(name = "deployments_url")
     var deploymentsUrl: String,
 
-    @Json(name = "created_at")
+    @field:Json(name = "created_at")
     var createdAt: String?,
 
-    @Json(name = "updated_at")
+    @field:Json(name = "updated_at")
     var updatedAt: String?,
 
-    @Json(name = "pushed_at")
+    @field:Json(name = "pushed_at")
     var pushedAt: String?,
 
-    @Json(name = "git_url")
+    @field:Json(name = "git_url")
     var gitUrl: String,
 
-    @Json(name = "ssh_url")
+    @field:Json(name = "ssh_url")
     var sshUrl: String,
 
-    @Json(name = "clone_url")
+    @field:Json(name = "clone_url")
     var cloneUrl: String,
 
-    @Json(name = "svn_url")
+    @field:Json(name = "svn_url")
     var svnUrl: String,
 
-    @Json(name = "homepage")
+    @field:Json(name = "homepage")
     var homepage: String?,
 
-    @Json(name = "size")
+    @field:Json(name = "size")
     var size: Int,
 
-    @Json(name = "stargazers_count")
+    @field:Json(name = "stargazers_count")
     var stargazersCount: Int,
 
-    @Json(name = "watchers_count")
+    @field:Json(name = "watchers_count")
     var watchersCount: Int,
 
-    @Json(name = "language")
+    @field:Json(name = "language")
     var language: String?,
 
-    @Json(name = "has_issues")
+    @field:Json(name = "has_issues")
     var hasIssues: Boolean,
 
-    @Json(name = "has_projects")
+    @field:Json(name = "has_projects")
     var hasProjects: Boolean,
 
-    @Json(name = "has_downloads")
+    @field:Json(name = "has_downloads")
     var hasDownloads: Boolean,
 
-    @Json(name = "has_wiki")
+    @field:Json(name = "has_wiki")
     var hasWiki: Boolean,
 
-    @Json(name = "has_pages")
+    @field:Json(name = "has_pages")
     var hasPages: Boolean,
 
-    @Json(name = "forks_count")
+    @field:Json(name = "forks_count")
     var forksCount: Int,
 
-    @Json(name = "mirror_url")
+    @field:Json(name = "mirror_url")
     var mirrorUrl: Any?,
 
-    @Json(name = "archived")
+    @field:Json(name = "archived")
     var archived: Boolean,
 
-    @Json(name = "disabled")
+    @field:Json(name = "disabled")
     var disabled: Boolean,
 
-    @Json(name = "open_issues_count")
+    @field:Json(name = "open_issues_count")
     var openIssuesCount: Int,
 
-    @Json(name = "license")
+    @field:Json(name = "license")
     var license: License?,
 
-    @Json(name = "allow_forking")
+    @field:Json(name = "allow_forking")
     var allowForking: Boolean,
 
-    @Json(name = "is_template")
+    @field:Json(name = "is_template")
     var isTemplate: Boolean,
 
-    @Json(name = "topics")
+    @field:Json(name = "topics")
     var topics: List<String>?,
 
-    @Json(name = "visibility")
+    @field:Json(name = "visibility")
     var visibility: String,
 
-    @Json(name = "forks")
+    @field:Json(name = "forks")
     var forks: Int,
 
-    @Json(name = "open_issues")
+    @field:Json(name = "open_issues")
     var openIssues: Int,
 
-    @Json(name = "watchers")
+    @field:Json(name = "watchers")
     var watchers: Int,
 
-    @Json(name = "default_branch")
+    @field:Json(name = "default_branch")
     var defaultBranch: String,
 
-    @Json(name = "score")
+    @field:Json(name = "score")
     var score: Float
 )
