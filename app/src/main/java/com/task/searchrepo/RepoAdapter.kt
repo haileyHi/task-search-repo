@@ -48,19 +48,11 @@ class RepoAdapter : RecyclerView.Adapter<RepoViewHolder>(){
 }
 
 class RepoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    var usernameTextView: TextView
-    var gitrepoTextView: TextView
-    var descriptionTextView: TextView
-    var languageTextView: TextView
-    var starCountTextView: TextView
-    var updateDateTextView: TextView
+    var usernameTextView: TextView = itemView.findViewById(R.id.tv_username)
+    var gitrepoTextView: TextView = itemView.findViewById(R.id.tv_repo_name)
+    var descriptionTextView: TextView = itemView.findViewById(R.id.tv_description)
+    var languageTextView: TextView = itemView.findViewById(R.id.tv_language)
+    var starCountTextView: TextView = itemView.findViewById(R.id.tv_stargazers_count)
+    var updateDateTextView: TextView = itemView.findViewById(R.id.tv_updated_at)
 
-    init {
-        usernameTextView = itemView.findViewById(R.id.tv_username)
-        gitrepoTextView = itemView.findViewById(R.id.tv_repo_name)
-        descriptionTextView = itemView.findViewById(R.id.tv_description)
-        languageTextView = itemView.findViewById(R.id.tv_language)
-        starCountTextView = itemView.findViewById(R.id.tv_stargazers_count)
-        updateDateTextView = itemView.findViewById(R.id.tv_updated_at)
-    }
 }
