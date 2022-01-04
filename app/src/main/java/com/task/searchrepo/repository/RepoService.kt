@@ -10,7 +10,11 @@ interface RepoService {
     }
 
     @GET("repositories")
-    suspend fun fetchRepo(@Query("q") keyword: String,
-                          @Query("page") page: Int? = 1,
-                          @Query("per_page") perPage: Int? = 30): SearchInfo
+    suspend fun fetchRepo(
+        @Query("q") keyword: String,
+        @Query("page") page: Int? = 1,
+        @Query("per_page") perPage: Int? = 30,
+        @Query("sort") sort: String? = "bestmatch",
+        @Query("order") order: String? = "desc"
+    ): SearchInfo
 }

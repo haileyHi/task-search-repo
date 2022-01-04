@@ -21,7 +21,6 @@ class MainViewModel : ViewModel() {
     private var service: RepoService
 
     private var page by Delegates.notNull<Int>()
-    private var orderby by Delegates.notNull<Int>()
 
     private val _keyword = MutableLiveData<String>() // 뷰모델 내부에서 설정하는 자료형
     val keyword: LiveData<String>
@@ -29,6 +28,13 @@ class MainViewModel : ViewModel() {
     private val _hasMore = MutableLiveData<Boolean>() // 다음 페이지로 넘어갈 수 있는지 확인용
     val hasMore: LiveData<Boolean>
         get() = _hasMore
+
+    private val _sort = MutableLiveData<String>()
+    val sort: LiveData<String>
+        get() = _sort
+    private val _orderby = MutableLiveData<String>()
+    val orderby: LiveData<String>
+        get() = _orderby
 
     init {
         val retrofit: Retrofit = Retrofit.Builder()
@@ -39,6 +45,7 @@ class MainViewModel : ViewModel() {
         service = retrofit.create(RepoService::class.java)
 
         loadingLiveData.value = false
+        _sort.value = "bestmatch"
     }
 
     // LiveData로 데이터 관찰
@@ -48,7 +55,12 @@ class MainViewModel : ViewModel() {
 
         viewModelScope.launch {
             if (page < 35) {
-                val searchInfo = service.fetchRepo(keyword = _keyword.value!!, page = page)
+                val searchInfo = service.fetchRepo(
+                    keyword = _keyword.value!!,
+                    page = page,
+                    sort = _sort.value,
+                    order = _orderby.value
+                )
                 if (searchInfo.items != null) {
                     if (page >= 2) {
                         itemLiveData.value?.addAll(searchInfo.items as Collection<Repo>)
@@ -70,6 +82,8 @@ class MainViewModel : ViewModel() {
     fun updateValue(actionType: Int, input: String?, pNum: Int) {
         when (actionType) {
             0 -> _keyword.value = input!!
+            2 -> _sort.value = input!!
+            3 -> _orderby.value = input!!
         }
         page = pNum
     }

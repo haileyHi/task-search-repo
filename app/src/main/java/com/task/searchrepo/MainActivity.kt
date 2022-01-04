@@ -1,11 +1,13 @@
 package com.task.searchrepo
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +25,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var keyword: String
     private var page: Int = 1
     private var isMore: Boolean = true
+
+    // sort 다이얼로그
+    private lateinit var selectionDialog: AlertDialog
+    private val mSortSelections =
+        arrayOf<String>("stars", "forks", "updated", "bestmatch")
+    private var prevChoice: Int = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,8 +62,46 @@ class MainActivity : AppCompatActivity() {
             hasMore.observe(this@MainActivity, {
                 isMore = it
             })
+            sort.observe(this@MainActivity, {
+                binding.tvSortStd.text = it
+                if(it == "bestmatch"){
+                    binding.ivOrderby.isSelected = true
+                    binding.ivOrderby.isEnabled = false
+                }else {
+                    binding.ivOrderby.isEnabled = true
+                }
+            })
         }
 
+        // 선택 다이얼로그
+        selectionDialog = AlertDialog.Builder(this)
+            .setSingleChoiceItems(mSortSelections, 3
+            ) { dialog, which ->
+                if (prevChoice != which) {
+                    page = 1
+                    viewModel.updateValue(2, mSortSelections[which], getPage())
+                    loadData(0)
+                    prevChoice = which
+                }
+                binding.ivOrderby.isEnabled = which != 3
+                if (which == 3) binding.ivOrderby.isSelected = true
+                selectionDialog.dismiss()
+            }
+            .create()
+
+        binding.tvSortStd.setOnClickListener {
+            selectionDialog.show()
+        }
+        binding.tvSortStd.visibility = View.GONE
+
+        binding.ivOrderby.setOnClickListener {
+            binding.ivOrderby.isSelected = !binding.ivOrderby.isSelected
+            val order = if (binding.ivOrderby.isSelected) "desc" else "asc"
+            page = 1
+            viewModel.updateValue(3,order, getPage())
+            loadData(0)
+        }
+        binding.ivOrderby.visibility = View.GONE
     }
 
     fun loadData(loadingType: Int) {
@@ -77,8 +123,10 @@ class MainActivity : AppCompatActivity() {
                     // 페이지 수 갱신
                     page = 1
 
-                    viewModel.updateValue(0, keyword, getPage())
+                    viewModel.updateValue(0, keyword,getPage())
                     loadData(loadingType = 0)
+                    binding.tvSortStd.visibility = View.VISIBLE
+                    binding.ivOrderby.visibility = View.VISIBLE
                 }
                 return true
             }

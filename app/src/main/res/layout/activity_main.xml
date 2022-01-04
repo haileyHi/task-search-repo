@@ -5,37 +5,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <androidx.appcompat.widget.SearchView
         android:id="@+id/sv_keyword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-        android:id="@+id/tv_result_count"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sv_keyword"
-        android:paddingVertical="4dp"
-        android:layout_marginHorizontal="16dp"
-        tools:text="총 712개"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_sort"
+        android:id="@+id/tv_result_count"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginHorizontal="16dp"
+        android:paddingVertical="4dp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sv_keyword"
+        tools:text="총 712개" />
+
+    <TextView
+        android:id="@+id/tv_sort_std"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:gravity="center"
+        app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24"
+        app:layout_constraintEnd_toStartOf="@id/iv_orderby"
+        app:layout_constraintTop_toBottomOf="@id/sv_keyword"
+        tools:text="bestmatch" />
+
+    <ImageView
+        android:id="@+id/iv_orderby"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/sv_keyword"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="most_stars"
         android:layout_marginEnd="16dp"
-        android:paddingVertical="4dp"/>
+        android:padding="6dp"
+        android:src="@drawable/selector_orderby"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sv_keyword"
+        android:contentDescription="orderby" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_search_result"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_result_count"
+        android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_repo"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_result_count"
+        tools:listitem="@layout/item_repo" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
