@@ -79,12 +79,16 @@ class MainActivity : AppCompatActivity() {
             ) { dialog, which ->
                 if (prevChoice != which) {
                     page = 1
+                    if (which == 3) {
+                        binding.ivOrderby.isSelected = true
+                        viewModel.updateValue(3,"desc", page)
+                    }
                     viewModel.updateValue(2, mSortSelections[which], getPage())
                     loadData(0)
                     prevChoice = which
                 }
                 binding.ivOrderby.isEnabled = which != 3
-                if (which == 3) binding.ivOrderby.isSelected = true
+
                 selectionDialog.dismiss()
             }
             .create()
