@@ -13,6 +13,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import kotlin.properties.Delegates
 
 class MainViewModel : ViewModel() {
+    enum class Action {
+        KEYWORD, PAGE, SORT, ORDERBY
+    }
     // 검색 결과
     var itemLiveData = MutableLiveData<MutableList<Repo>>() // 뮤터블 - 수정 가능, LiveData - 수정 불가
     var totalItemCountLiveData = MutableLiveData<Long>()
@@ -79,12 +82,24 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    fun updateValue(actionType: Int, input: String?, pNum: Int) {
+    fun updateValue(actionType: Action, input: String?, pNum: Int) {
         when (actionType) {
-            0 -> _keyword.value = input!!
-            2 -> _sort.value = input!!
-            3 -> _orderby.value = input!!
+            Action.KEYWORD -> {
+                _keyword.value = input!!
+                page = pNum
+            }
+            Action.PAGE -> {
+                page = pNum
+            }
+            Action.SORT -> {
+                _sort.value = input!!
+                page = pNum
+            }
+            Action.ORDERBY -> {
+                _orderby.value = input!!
+                page = pNum
+            }
         }
-        page = pNum
+
     }
 }
