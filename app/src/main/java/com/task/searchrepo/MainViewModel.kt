@@ -17,9 +17,15 @@ class MainViewModel : ViewModel() {
         KEYWORD, PAGE, SORT, ORDERBY
     }
     // 검색 결과
-    var itemLiveData = MutableLiveData<MutableList<Repo>>() // 뮤터블 - 수정 가능, LiveData - 수정 불가
-    var totalItemCountLiveData = MutableLiveData<Long>()
-    var loadingLiveData = MutableLiveData<Boolean>()
+    private val _itemLiveData = MutableLiveData<MutableList<Repo>>() // 뮤터블 - 수정 가능, LiveData - 수정 불가
+    val itemLiveData: LiveData<MutableList<Repo>>
+        get() = _itemLiveData
+    private val _totalItemCountLiveData = MutableLiveData<Long>()
+    val totalItemCountLiveData: LiveData<Long>
+        get() = _totalItemCountLiveData
+    private val _loadingLiveData = MutableLiveData<Boolean>()
+    val loadingLiveData: LiveData<Boolean>
+        get() = _loadingLiveData
 
     private var service: RepoService
 
@@ -47,14 +53,14 @@ class MainViewModel : ViewModel() {
 
         service = retrofit.create(RepoService::class.java)
 
-        loadingLiveData.value = false
+        _loadingLiveData.value = false
         _sort.value = "bestmatch"
     }
 
     // LiveData로 데이터 관찰
     fun fetchSearchInfo() {
         // 로딩 시작
-        loadingLiveData.value = true
+        _loadingLiveData.value = true
 
         viewModelScope.launch {
             if (page < 35) {
@@ -70,15 +76,15 @@ class MainViewModel : ViewModel() {
                         _hasMore.value = totalItemCountLiveData.value!! > (page * 30)
                         // 1000개 넘으면 불러올 수 없음.
                     } else {
-                        itemLiveData.value = (searchInfo.items as MutableList<Repo>?)!!
-                        totalItemCountLiveData.value = searchInfo.totalCount
+                        _itemLiveData.value = (searchInfo.items as MutableList<Repo>?)!!
+                        _totalItemCountLiveData.value = searchInfo.totalCount
                     }
                 }
             } else {
                 _hasMore.value = false
             }
             // 로딩 끝
-            loadingLiveData.value = false
+            _loadingLiveData.value = false
         }
     }
 

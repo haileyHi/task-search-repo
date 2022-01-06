@@ -81,9 +81,9 @@ class MainActivity : AppCompatActivity() {
                     page = 1
                     if (which == 3) {
                         binding.ivOrderby.isSelected = true
-                        viewModel.updateValue(3,"desc", page)
+                        viewModel.updateValue(MainViewModel.Action.ORDERBY,"desc", page)
                     }
-                    viewModel.updateValue(2, mSortSelections[which], getPage())
+                    viewModel.updateValue(MainViewModel.Action.SORT, mSortSelections[which], getPage())
                     loadData(0)
                     prevChoice = which
                 }
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
             binding.ivOrderby.isSelected = !binding.ivOrderby.isSelected
             val order = if (binding.ivOrderby.isSelected) "desc" else "asc"
             page = 1
-            viewModel.updateValue(3,order, getPage())
+            viewModel.updateValue(MainViewModel.Action.ORDERBY,order, getPage())
             loadData(0)
         }
         binding.ivOrderby.visibility = View.GONE
@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
         when (loadingType) {
             0 -> viewModel.fetchSearchInfo() // 새로 가져오기
             1 -> {
-                viewModel.updateValue(actionType = 1, input = null, pNum = getPage()) // 추가하기
+                viewModel.updateValue(actionType = MainViewModel.Action.PAGE, input = null, pNum = getPage()) // 추가하기
                 viewModel.fetchSearchInfo()
             }
         }
@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
                     // 페이지 수 갱신
                     page = 1
 
-                    viewModel.updateValue(0, keyword,getPage())
+                    viewModel.updateValue(MainViewModel.Action.KEYWORD, keyword,getPage())
                     loadData(loadingType = 0)
                     binding.tvSortStd.visibility = View.VISIBLE
                     binding.ivOrderby.visibility = View.VISIBLE
